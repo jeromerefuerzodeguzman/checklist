@@ -8,42 +8,40 @@
 			<p><h4>EMPLOYEE CHECKLIST</h4></p>
 		</div>
 	</div>
-	<div class="row">
-		<div class="large-6 columns">
+	<div class="row collapse">
+		<div class="large-4 columns">
 			<div class="large-12 columns">
 				<fieldset>
 					<legend>Items</legend>
 					@foreach($items as $item)
-
-					<div id="modal{{ $item->id }}" class="reveal-modal tiny" data-reveal>
+					<div id="modal{{ $item->id }}" class="reveal-modal small" data-reveal>
 						<fieldset>
-							<legend>Others</legend>
+							<legend>{{ $item->name }}</legend>
 							{{ Form::open(array('url' => 'add_employeeitem', 'method' => 'post', 'class' => 'custom')) }}
 							{{ Form::hidden('employee_id', $employee->id) }}
 							{{ Form::hidden('user_id', $user->id) }}
 							{{ Form::hidden('item_id', $item->id) }}
 							Status: {{ Form::select('status', array('Entry' => 'Entry', 'Resign' => 'Resign')) }}
-							Remarks: {{ Form::text('remarks') }}
-							{{ Form::submit('Save', array('class' => 'button radius')) }}
+							Remarks: {{ Form::textarea('remarks') }}
+							{{ Form::submit('Save', array('class' => 'button small')) }}
 							{{ Form::token(); }}
 							{{ Form::close(); }}
 						</fieldset>
 					</div>
-					<div class="row collapse" style="margin-left: 80px;">
-						<div class="small-6 columns">
+					<div class="row collapse">
+						<div class="large-6 columns">
 							<span class="prefix">{{ $item->name }}</span>
 						</div>
-						<div class="small-6 columns">
-							<a href="#" data-reveal-id="modal{{ $item->id }}" class="radius tiny button">Process</a>
+						<div class="large-6 columns">
+							<a href="#" data-reveal-id="modal{{ $item->id }}" class="tiny button">Process</a>
 							<!-- <button class="process">Process</button> -->
 						</div>
 					</div>
-
 					@endforeach
 				</fieldset>				
 			</div>
 		</div>
-		<div class="large-6 columns">
+		<div class="large-8 columns">
 			<div class="large-12 columns">
 				<fieldset>
 					<legend>Employee Details</legend>
@@ -55,21 +53,23 @@
 					</div>
 					@if($employeeitems->count())
 					<div class="row">
-						<div class="large-12 colums text-center">
-							<table width="430px">
+						<div class="large-12 colums text-left">
+							<table class="large-12" id="checklist_table">
 								<tr>
-										<td width="90px">Item</td>
-										<td width="120px">Processed By</td>
-										<td width="180px">Date</td>
-										<td width="40px">Status</td>
+										<th class="large-2">Item</th>
+										<th class="large-2">User</th>
+										<th class="large-2">Date</th>
+										<th class="large-1">Status</th>
+										<th class="large-5">Remarks</th>
 								</tr>
 								@foreach($employeeitems as $employeeitem)
-									<tr>
-										<td>{{ $employeeitem->item->name }}</td>
-										<td>{{ $employeeitem->user->username }}</td>
-										<td>{{ $employeeitem->created_at }}</td>
-										<td>{{ $employeeitem->status }}</td>
-									</tr>
+								<tr>
+									<td>{{ $employeeitem->item->name }}</td>
+									<td>{{ $employeeitem->user->username }}</td>
+									<td>{{ date('Y-m-d', strtotime($employeeitem->created_at)) }}</td>
+									<td>{{ $employeeitem->status }}</td>
+									<td>{{ $employeeitem->remarks }}</td>
+								</tr>
 								@endforeach
 							</table>
 						</div>

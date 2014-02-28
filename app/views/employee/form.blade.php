@@ -15,7 +15,7 @@
 					<span class="prefix">Name:</span>
 				</div>
 				<div class="small-8 columns">
-					{{ Form::text('name', Input::old('name'), array('placeholder' => 'Enter your name here')) }}
+					{{ Form::text('name', Input::old('name'), array('placeholder' => 'Enter employee name here')) }}
 				</div>
 			</div>
 		</div>
@@ -32,10 +32,10 @@
 		<div class="large-6 large-centered columns">
 			<div class="row collapse">
 				<div class="small-4 columns">
-					<span class="prefix">Campaign/Department:</span>
+					<span class="prefix">Campaign:</span>
 				</div>
 				<div class="small-8 columns">
-					{{ Form::text('department', Input::old('department'), array('placeholder' => 'Enter your Campaign/Department here')) }}
+					{{ Form::text('department', Input::old('department'), array('placeholder' => 'Enter your Campaign or Department here')) }}
 				</div>
 			</div>
 		</div>

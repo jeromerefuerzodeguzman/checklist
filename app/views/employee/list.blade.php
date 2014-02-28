@@ -8,8 +8,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<div style="width: 420px; margin-left: auto ;  margin-right: auto ;">
-			<table>
+		<div class="large-5 large-centered columns">
+			<table class="large-12">
 				<tr>
 					<th>Name</th>
 					<th>Department</th>
