@@ -22,20 +22,20 @@
 		<div class="large-6 large-centered columns">
 			<div class="row collapse">
 				<div class="small-4 columns">
-					<span class="prefix">Date:</span>
+					<span class="prefix">Campaign:</span>
 				</div>
 				<div class="small-8 columns">
-					{{ Form::text('date', $date, $attributes = array('readonly' => 'readonly')) }}
+					{{ Form::text('department', Input::old('department'), array('placeholder' => 'Enter your Campaign or Department here')) }}
 				</div>
 			</div>
 		</div>
 		<div class="large-6 large-centered columns">
 			<div class="row collapse">
 				<div class="small-4 columns">
-					<span class="prefix">Campaign:</span>
+					<span class="prefix">Date:</span>
 				</div>
 				<div class="small-8 columns">
-					{{ Form::text('department', Input::old('department'), array('placeholder' => 'Enter your Campaign or Department here')) }}
+					{{ Form::text('date', $date, $attributes = array('readonly' => 'readonly')) }}
 				</div>
 			</div>
 		</div>

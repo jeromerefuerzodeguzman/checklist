@@ -21,7 +21,7 @@
 							{{ Form::hidden('employee_id', $employee->id) }}
 							{{ Form::hidden('user_id', $user->id) }}
 							{{ Form::hidden('item_id', $item->id) }}
-							Status: {{ Form::select('status', array('Entry' => 'Entry', 'Resign' => 'Resign')) }}
+							Status: {{ Form::select('status', array('Entry' => 'Assign', 'Resign' => 'Remove')) }}
 							Remarks: {{ Form::textarea('remarks') }}
 							{{ Form::submit('Save', array('class' => 'button small')) }}
 							{{ Form::token(); }}
@@ -29,11 +29,17 @@
 						</fieldset>
 					</div>
 					<div class="row collapse">
-						<div class="large-6 columns">
+						<div class="large-10 columns">
+							@if($employee->item_status($item->id) == 'Entry')
+							<span class="prefix success label">{{ $item->name }}</span>
+							@elseif($employee->item_status($item->id) == 'Resign')
+							<span class="prefix alert label">{{ $item->name }}</span>
+							@else
 							<span class="prefix">{{ $item->name }}</span>
+							@endif
 						</div>
-						<div class="large-6 columns">
-							<a href="#" data-reveal-id="modal{{ $item->id }}" class="tiny button">Process</a>
+						<div class="large-2 columns">
+							<span data-reveal-id="modal{{ $item->id }}" class="button tiny">+</span>
 							<!-- <button class="process">Process</button> -->
 						</div>
 					</div>
@@ -67,7 +73,19 @@
 									<td>{{ $employeeitem->item->name }}</td>
 									<td>{{ $employeeitem->user->username }}</td>
 									<td>{{ date('Y-m-d', strtotime($employeeitem->created_at)) }}</td>
-									<td>{{ $employeeitem->status }}</td>
+									<td><?php 
+										switch ($employeeitem->status) {
+											case 'Entry':
+												echo 'Assign';
+												break;
+											case 'Resign':
+												echo 'Remove';
+												break;
+											default:
+												# code...
+												break;
+										}
+									?></td>
 									<td>{{ $employeeitem->remarks }}</td>
 								</tr>
 								@endforeach

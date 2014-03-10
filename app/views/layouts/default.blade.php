@@ -32,11 +32,11 @@
 					</div>
 					<div class="large-4 columns">
 						<a href="{{ Request::root() }}/employee_form" style="height: 95px;"><i class="fi-plus style1"></i></a>
-						<h5><span>Form</span><h5/>
+						<h5><span>Add Employee</span><h5/>
 					</div>
 					<div class="large-4 columns">
 						<a href="{{ Request::root() }}/search_form" style="height: 95px;"><i class="fi-magnifying-glass style1"></i></a>
-						<h5><span>Search</span><h5/>
+						<h5><span>Search Employee</span><h5/>
 					</div>
 					
 				</div>
